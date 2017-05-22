@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue todoList demo</title>
+</head>
+
+<body>
+    <div id="example-1">
+        <button v-on:click="clickTodo('hello ',$event)">增加 1</button>
+        <p>这个按钮被点击了 {{ counter }} 次。</p>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    var example1 = new Vue({
+        el: '#example-1',
+        data: {
+            counter: 0
+        },
+        methods: {
+            clickTodo: function(message,event) {
+                this.counter += 1;
+                alert(message);
+                alert(event.target.tagName);
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>

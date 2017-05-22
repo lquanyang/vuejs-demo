@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue todoList demo</title>
+</head>
+
+<body>
+    <div id="dotoListExcample">
+        <input type="text" v-model="newTodoText" v-on:keyup.enter="addNewTodo" placeholder="input todo message">
+        <button v-on:click="addNewTodo">Add</button>
+        <ul>
+            <li v-for="(todo,idx) in todos" v-bind:title="todo.message" v-on:click.once="showThisText(idx)">{{idx}}-{{todo.message}}
+                <button v-on:click.stop="removeThisTodo('idx')">X</button>
+            </li>
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    var todoListApp = new Vue({
+        el: '#dotoListExcample',
+        data: {
+            newTodoText: '',
+            todos: [{
+                message: 'Do the dishes'
+            }, {
+                message: 'Take out the trash'
+            }, {
+                message: 'Mow the lawn'
+            }]
+        },
+        methods: {
+            addNewTodo: function() {
+                if(!this.newTodoText){
+                    return;
+                }
+                this.todos.push({
+                    message: this.newTodoText
+                });
+                this.newTodoText = '';
+            },
+            removeThisTodo: function(idx) {
+                this.todos.splice(idx, 1);
+            },
+            showThisText:function(idx){
+                alert(this.todos[idx].message);
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>

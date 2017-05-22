@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app-7">
+        <ul>
+            <!-- 现在我们为每个todo-item提供待办项对象    -->
+            <!-- 待办项对象是变量，即其内容可以是动态的 -->
+            <cus-cpt-todo v-for="(item,index) in MeList" :key="item.id" v-bind:doto="item" v-bind:idx="index"></cus-cpt-todo>
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    // Vue.config.silent = true;
+    // 定义名为 todo-item 的新组件
+    //定义全局组件或者在实例中指定作用域下的局部组件
+    Vue.component('cus-cpt-todo', {
+        props: ['doto','idx'],
+        template: '<li v-bind:data-vid="doto.id" v-on:click="">{{ idx }}-{{ doto.text }}</li>'
+    })
+    var app7 = new Vue({
+        el: '#app-7',
+        methods:{
+            showThisMeList:function(idx){
+
+            }
+        },
+        /*components:{
+            'cus-cpt-todo':{
+                props: ['doto','idx'],
+                template: '<li v-bind:data-vid="doto.id" v-on:click="">{{ idx }}-{{ doto.text }}</li>'
+            }
+        },*/
+        data: {
+            MeList: [{
+                text: '蔬菜',
+                id: 4
+            }, {
+                text: '奶酪',
+                id: 2
+            }, {
+                text: '随便其他什么人吃的东西',
+                id: 3
+            }]
+        }
+    })
+    </script>
+</body>
+
+</html>
